@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -15,7 +14,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddev.domain.VectorScalar
@@ -23,11 +21,11 @@ import com.example.androiddev.ui.theme.AndroidDevTheme
 
 @Composable
 fun VectorScalarScreen(modifier: Modifier = Modifier) {
-    val firstVector = remember {
-        VectorScalar.generateVector(5)
+    var firstVector by remember {
+        mutableStateOf(VectorScalar.generateVector(5))
     }
-    val secondVector = remember {
-        VectorScalar.generateVector(5)
+    var secondVector by remember {
+        mutableStateOf(VectorScalar.generateVector(5))
     }
     var output by remember { mutableStateOf("") }
 
@@ -57,6 +55,17 @@ fun VectorScalarScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth(),
             label = { Text("Результат") }
         )
+
+        Button(
+            onClick = {
+                firstVector = VectorScalar.generateVector(5)
+                secondVector = VectorScalar.generateVector(5)
+                output = ""
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Сгенерировать")
+        }
 
         Button(
             onClick = {
