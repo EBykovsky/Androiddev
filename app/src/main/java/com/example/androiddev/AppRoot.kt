@@ -1,31 +1,32 @@
-
+git add -A
 package com.example.androiddev
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import android.widget.Toast
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.example.androiddev.ui.screens.MainScreen
 
 @Composable
 fun AppRoot(
     modifier: Modifier = Modifier
 ) {
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "Быки и коровы",
-                style = MaterialTheme.typography.headlineMedium
-            )
-        }
+    val context = LocalContext.current
+    val message = stringResource(R.string.feature_not_ready)
+
+    val showPlaceholder = {
+        Toast.makeText(
+            context,
+            message,
+            Toast.LENGTH_SHORT
+        ).show()
     }
+
+    MainScreen(
+        modifier = modifier,
+        onStartClick = showPlaceholder,
+        onRulesClick = showPlaceholder,
+        onSettingsClick = showPlaceholder
+    )
 }
