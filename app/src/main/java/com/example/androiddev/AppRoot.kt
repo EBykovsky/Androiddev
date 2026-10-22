@@ -1,4 +1,3 @@
-git add -A
 package com.example.androiddev
 
 import android.widget.Toast
@@ -7,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.example.androiddev.ui.screens.MainScreen
+import android.content.Intent
 
 @Composable
 fun AppRoot(
@@ -25,7 +25,13 @@ fun AppRoot(
 
     MainScreen(
         modifier = modifier,
-        onStartClick = showPlaceholder,
+        onStartClick = {
+            val intent = Intent(
+                context,
+                DifficultyActivity::class.java
+            )
+            context.startActivity(intent)
+        },
         onRulesClick = showPlaceholder,
         onSettingsClick = showPlaceholder
     )

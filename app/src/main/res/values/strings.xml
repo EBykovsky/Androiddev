@@ -4,4 +4,10 @@
     <string name="menu_rules">Правила</string>
     <string name="menu_settings">Настройки</string>
     <string name="feature_not_ready">Экран появится на следующем этапе</string>
+
+    <string name="difficulty_title">Выберите\nсложность:</string>
+    <string name="difficulty_normal">Нормально</string>
+    <string name="difficulty_hard">Сложно</string>
+    <string name="difficulty_normal_message">Выбран обычный уровень: 4 цифры, 5 попыток</string>
+    <string name="difficulty_hard_message">Выбран сложный уровень: 6 цифр, 8 попыток</string>
 </resources>

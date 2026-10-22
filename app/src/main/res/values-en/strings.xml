@@ -7,4 +7,10 @@
     <string name="feature_not_ready">
         This screen will be added in the next stage
     </string>
+
+    <string name="difficulty_title">Choose a\ndifficulty:</string>
+    <string name="difficulty_normal">Normal</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="difficulty_normal_message">Normal mode: 4 digits, 5 attempts</string>
+    <string name="difficulty_hard_message">Hard mode: 6 digits, 8 attempts</string>
 </resources>
