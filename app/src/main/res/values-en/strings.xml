@@ -13,4 +13,20 @@
     <string name="difficulty_hard">Hard</string>
     <string name="difficulty_normal_message">Normal mode: 4 digits, 5 attempts</string>
     <string name="difficulty_hard_message">Hard mode: 6 digits, 8 attempts</string>
+
+    <string name="game_title">Bulls and Cows</string>
+    <string name="game_parameters">Digits: %1$d. Attempts: %2$d</string>
+    <string name="game_back">Back</string>
+
+    <string name="game_guess_title">Guess the code</string>
+
+    <string name="keyboard_submit">Enter</string>
+    <string name="keyboard_delete">Delete last digit</string>
+
+    <string name="game_home">Home</string>
+    <string name="game_win_title">Victory!</string>
+    <string name="game_win_message">You guessed the secret code!</string>
+    <string name="game_lose_title">Game over!</string>
+    <string name="game_lose_message">No attempts left. Secret code: %1$s</string>
+    <string name="game_retry">Play again</string>
 </resources>

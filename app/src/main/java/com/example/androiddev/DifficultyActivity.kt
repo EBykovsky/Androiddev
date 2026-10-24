@@ -1,12 +1,11 @@
 
 package com.example.androiddev
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.androiddev.domain.GameDifficulty
 import com.example.androiddev.ui.screens.DifficultyScreen
 import com.example.androiddev.ui.theme.AndroidDevTheme
 
@@ -22,19 +21,17 @@ class DifficultyActivity : ComponentActivity() {
                 DifficultyScreen(
                     onDifficultySelected = { difficulty ->
 
-                        val message = when (difficulty) {
-                            GameDifficulty.NORMAL ->
-                                R.string.difficulty_normal_message
-
-                            GameDifficulty.HARD ->
-                                R.string.difficulty_hard_message
-                        }
-
-                        Toast.makeText(
+                        val intent = Intent(
                             this,
-                            getString(message),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            GameActivity::class.java
+                        )
+
+                        intent.putExtra(
+                            GameActivity.EXTRA_DIFFICULTY,
+                            difficulty.name
+                        )
+
+                        startActivity(intent)
                     }
                 )
             }

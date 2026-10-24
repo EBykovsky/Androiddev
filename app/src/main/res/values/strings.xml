@@ -10,4 +10,20 @@
     <string name="difficulty_hard">Сложно</string>
     <string name="difficulty_normal_message">Выбран обычный уровень: 4 цифры, 5 попыток</string>
     <string name="difficulty_hard_message">Выбран сложный уровень: 6 цифр, 8 попыток</string>
+
+    <string name="game_title">Быки и коровы</string>
+    <string name="game_parameters">Цифр: %1$d. Попыток: %2$d</string>
+    <string name="game_back">Назад</string>
+
+    <string name="game_guess_title">Угадай код</string>
+
+    <string name="keyboard_submit">Ввести</string>
+    <string name="keyboard_delete">Удалить последнюю цифру</string>
+
+    <string name="game_home">На главную</string>
+    <string name="game_win_title">Победа!</string>
+    <string name="game_win_message">Вы угадали секретный код!</string>
+    <string name="game_lose_title">Игра окончена!</string>
+    <string name="game_lose_message">Попытки закончились. Секретный код: %1$s</string>
+    <string name="game_retry">Играть снова</string>
 </resources>
