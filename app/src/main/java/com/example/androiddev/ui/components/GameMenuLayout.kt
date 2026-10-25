@@ -21,6 +21,7 @@ fun GameMenuLayout(
     modifier: Modifier = Modifier,
     showBackground: Boolean = true,
     frameHeight: Float = 466f,
+    artworkOffsetY: Float = 0f,
     content: @Composable BoxScope.(Float) -> Unit
 ) {
     BoxWithConstraints(
@@ -55,7 +56,7 @@ fun GameMenuLayout(
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .offset(y = (156f * scale).dp)
+                    .offset(y = ((156f + artworkOffsetY) * scale).dp)
                     .size(
                         width = (328f * scale).dp,
                         height = (frameHeight * scale).dp
@@ -67,7 +68,7 @@ fun GameMenuLayout(
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .offset(y = (110f * scale).dp)
+                    .offset(y = ((110f + artworkOffsetY) * scale).dp)
                     .size(
                         width = (371f * scale).dp,
                         height = (247f * scale).dp

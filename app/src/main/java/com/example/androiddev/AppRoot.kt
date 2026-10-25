@@ -1,10 +1,8 @@
 package com.example.androiddev
 
-import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import com.example.androiddev.ui.screens.MainScreen
 import android.content.Intent
 import androidx.compose.runtime.getValue
@@ -12,38 +10,75 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.androiddev.ui.components.RulesDialog
+import androidx.activity.compose.BackHandler
+import com.example.androiddev.data.repository.LanguageRepository
+import com.example.androiddev.ui.screens.SettingsScreen
 
 @Composable
 fun AppRoot(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
-    val message = stringResource(R.string.feature_not_ready)
+
+    val languageRepository = remember(context) {
+        LanguageRepository(context.applicationContext)
+    }
 
     var showRules by remember {
         mutableStateOf(false)
     }
 
-    MainScreen(
-        modifier = modifier,
-        onStartClick = {
-            val intent = Intent(
-                context,
-                DifficultyActivity::class.java
-            )
-            context.startActivity(intent)
-        },
-        onRulesClick = {
-            showRules = true
-        },
-        onSettingsClick = {
-            Toast.makeText(
-                context,
-                message,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    )
+    var showSettings by remember {
+        mutableStateOf(false)
+    }
+
+    var selectedLanguage by remember {
+        mutableStateOf(languageRepository.getLanguage())
+    }
+
+    BackHandler(enabled = showSettings) {
+        showSettings = false
+    }
+
+    if (showSettings) {
+        SettingsScreen(
+            modifier = modifier,
+            selectedLanguage = selectedLanguage,
+
+            onLanguageSelected = { language ->
+                selectedLanguage = language
+            },
+
+            onSave = {
+                languageRepository.saveLanguage(
+                    selectedLanguage
+                )
+
+                showSettings = false
+            }
+        )
+    } else {
+        MainScreen(
+            modifier = modifier,
+            onStartClick = {
+                val intent = Intent(
+                    context,
+                    DifficultyActivity::class.java
+                )
+                context.startActivity(intent)
+            },
+            onRulesClick = {
+                showRules = true
+            },
+            onSettingsClick = {
+                selectedLanguage =
+                    languageRepository.getLanguage()
+
+                showSettings = true
+            }
+        )
+    }
+
     if (showRules) {
         RulesDialog(
             onDismiss = {

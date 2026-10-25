@@ -38,4 +38,10 @@
     <string name="rules_cow">Yellow digit — cow: correct digit in the wrong position.</string>
     <string name="rules_goal">Guess the code within a limited number of attempts.</string>
     <string name="rules_close">Got it!</string>
+
+    <string name="settings_title">SETTINGS:</string>
+    <string name="settings_language">Language:</string>
+    <string name="settings_russian">Russian</string>
+    <string name="settings_english">English</string>
+    <string name="settings_save">Save</string>
 </resources>

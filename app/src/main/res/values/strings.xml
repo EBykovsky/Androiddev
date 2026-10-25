@@ -36,4 +36,10 @@
     <string name="rules_goal">Угадайте код за ограниченное число попыток.</string>
     <string name="rules_close">Понятно!</string>
 
+    <string name="settings_title">НАСТРОЙКИ:</string>
+    <string name="settings_language">Язык:</string>
+    <string name="settings_russian">Русский</string>
+    <string name="settings_english">Английский</string>
+    <string name="settings_save">Сохранить</string>
+
 </resources>
