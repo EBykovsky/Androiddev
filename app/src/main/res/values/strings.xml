@@ -26,4 +26,13 @@
     <string name="game_lose_title">Игра окончена!</string>
     <string name="game_lose_message">Попытки закончились. Секретный код: %1$s</string>
     <string name="game_retry">Играть снова</string>
+
+    <string name="rules_title">ПРАВИЛА:</string>
+    <string name="rules_intro">Компьютер загадывает код из неповторяющихся цифр.</string>
+    <string name="rules_input">Введи число и нажми «Ввести»:</string>
+    <string name="rules_bull">Зелёная цифра — бык: цифра и позиция угаданы.</string>
+    <string name="rules_cow">Жёлтая цифра — корова: цифра угадана, но стоит на другой позиции.</string>
+    <string name="rules_goal">Угадайте код за ограниченное число попыток.</string>
+    <string name="rules_close">Понятно!</string>
+
 </resources>

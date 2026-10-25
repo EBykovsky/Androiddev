@@ -19,6 +19,8 @@ import com.example.androiddev.R
 @Composable
 fun GameMenuLayout(
     modifier: Modifier = Modifier,
+    showBackground: Boolean = true,
+    frameHeight: Float = 466f,
     content: @Composable BoxScope.(Float) -> Unit
 ) {
     BoxWithConstraints(
@@ -30,12 +32,14 @@ fun GameMenuLayout(
             maxHeight.value / 891f
         )
 
-        Image(
-            painter = painterResource(R.drawable.game_background),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
+        if (showBackground) {
+            Image(
+                painter = painterResource(R.drawable.game_background),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
 
         Box(
             modifier = Modifier
@@ -48,12 +52,13 @@ fun GameMenuLayout(
             Image(
                 painter = painterResource(R.drawable.game_frame),
                 contentDescription = null,
+                contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .offset(y = (156f * scale).dp)
                     .size(
                         width = (328f * scale).dp,
-                        height = (466f * scale).dp
+                        height = (frameHeight * scale).dp
                     )
             )
 

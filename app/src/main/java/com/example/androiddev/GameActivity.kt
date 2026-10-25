@@ -3,13 +3,17 @@ package com.example.androiddev
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.androiddev.domain.GameDifficulty
 import com.example.androiddev.ui.screens.GameScreen
 import com.example.androiddev.ui.theme.AndroidDevTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.example.androiddev.ui.components.RulesDialog
 
 class GameActivity : ComponentActivity() {
 
@@ -31,6 +35,11 @@ class GameActivity : ComponentActivity() {
 
         setContent {
             AndroidDevTheme {
+
+                var showRules by remember {
+                    mutableStateOf(false)
+                }
+
                 GameScreen(
                     difficulty = difficulty,
 
@@ -50,13 +59,17 @@ class GameActivity : ComponentActivity() {
                     },
 
                     onInfoClick = {
-                        Toast.makeText(
-                            this,
-                            R.string.feature_not_ready,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        showRules = true
                     }
                 )
+
+                if (showRules) {
+                    RulesDialog(
+                        onDismiss = {
+                            showRules = false
+                        }
+                    )
+                }
             }
         }
     }

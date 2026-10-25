@@ -7,6 +7,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.example.androiddev.ui.screens.MainScreen
 import android.content.Intent
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.example.androiddev.ui.components.RulesDialog
 
 @Composable
 fun AppRoot(
@@ -15,12 +20,8 @@ fun AppRoot(
     val context = LocalContext.current
     val message = stringResource(R.string.feature_not_ready)
 
-    val showPlaceholder = {
-        Toast.makeText(
-            context,
-            message,
-            Toast.LENGTH_SHORT
-        ).show()
+    var showRules by remember {
+        mutableStateOf(false)
     }
 
     MainScreen(
@@ -32,7 +33,22 @@ fun AppRoot(
             )
             context.startActivity(intent)
         },
-        onRulesClick = showPlaceholder,
-        onSettingsClick = showPlaceholder
+        onRulesClick = {
+            showRules = true
+        },
+        onSettingsClick = {
+            Toast.makeText(
+                context,
+                message,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     )
+    if (showRules) {
+        RulesDialog(
+            onDismiss = {
+                showRules = false
+            }
+        )
+    }
 }

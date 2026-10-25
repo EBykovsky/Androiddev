@@ -29,4 +29,12 @@
     <string name="game_lose_title">Game over!</string>
     <string name="game_lose_message">No attempts left. Secret code: %1$s</string>
     <string name="game_retry">Play again</string>
+
+    <string name="rules_title">RULES:</string>
+    <string name="rules_intro">The computer generates a secret code with unique digits.</string>
+    <string name="rules_input">Enter a number and press "Enter":</string>
+    <string name="rules_bull">Green digit — bull: correct digit and position.</string>
+    <string name="rules_cow">Yellow digit — cow: correct digit in the wrong position.</string>
+    <string name="rules_goal">Guess the code within a limited number of attempts.</string>
+    <string name="rules_close">Got it!</string>
 </resources>
