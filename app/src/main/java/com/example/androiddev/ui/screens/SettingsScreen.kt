@@ -37,6 +37,7 @@ fun SettingsScreen(
 ) {
     GameMenuLayout(
         modifier = modifier,
+        showBackground = false,
         frameHeight = 410f,
         artworkOffsetY = 0f
     ) { scale ->

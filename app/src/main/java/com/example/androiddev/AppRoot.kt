@@ -10,9 +10,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.androiddev.ui.components.RulesDialog
-import androidx.activity.compose.BackHandler
 import com.example.androiddev.data.repository.LanguageRepository
-import com.example.androiddev.ui.screens.SettingsScreen
+import com.example.androiddev.ui.components.SettingsDialog
+
 
 @Composable
 fun AppRoot(
@@ -36,13 +36,36 @@ fun AppRoot(
         mutableStateOf(languageRepository.getLanguage())
     }
 
-    BackHandler(enabled = showSettings) {
-        showSettings = false
+    MainScreen(
+        modifier = modifier,
+        onStartClick = {
+            val intent = Intent(
+                context,
+                DifficultyActivity::class.java
+            )
+            context.startActivity(intent)
+        },
+        onRulesClick = {
+            showRules = true
+        },
+        onSettingsClick = {
+            selectedLanguage =
+                languageRepository.getLanguage()
+
+            showSettings = true
+        }
+    )
+
+    if (showRules) {
+        RulesDialog(
+            onDismiss = {
+                showRules = false
+            }
+        )
     }
 
     if (showSettings) {
-        SettingsScreen(
-            modifier = modifier,
+        SettingsDialog(
             selectedLanguage = selectedLanguage,
 
             onLanguageSelected = { language ->
@@ -50,39 +73,15 @@ fun AppRoot(
             },
 
             onSave = {
-                languageRepository.saveLanguage(
-                    selectedLanguage
-                )
-
                 showSettings = false
-            }
-        )
-    } else {
-        MainScreen(
-            modifier = modifier,
-            onStartClick = {
-                val intent = Intent(
-                    context,
-                    DifficultyActivity::class.java
-                )
-                context.startActivity(intent)
-            },
-            onRulesClick = {
-                showRules = true
-            },
-            onSettingsClick = {
-                selectedLanguage =
-                    languageRepository.getLanguage()
 
-                showSettings = true
-            }
-        )
-    }
+                if (languageRepository.getLanguage() != selectedLanguage) {
+                    languageRepository.saveLanguage(selectedLanguage)
+                }
+            },
 
-    if (showRules) {
-        RulesDialog(
             onDismiss = {
-                showRules = false
+                showSettings = false
             }
         )
     }
