@@ -24,11 +24,12 @@
     <string name="keyboard_delete">Delete last digit</string>
 
     <string name="game_home">Home</string>
-    <string name="game_win_title">Victory!</string>
-    <string name="game_win_message">You guessed the secret code!</string>
-    <string name="game_lose_title">Game over!</string>
-    <string name="game_lose_message">No attempts left. Secret code: %1$s</string>
-    <string name="game_retry">Play again</string>
+    <string name="game_win_title">You won!</string>
+    <string name="game_lose_title">You lost :(</string>
+    <string name="game_win_code">Code: %1$s</string>
+    <string name="game_win_attempts">Attempts: %1$d</string>
+    <string name="game_lose_code">The code was: %1$s</string>
+    <string name="game_retry">Try again</string>
 
     <string name="rules_title">RULES:</string>
     <string name="rules_intro">The computer generates a secret code with unique digits.</string>

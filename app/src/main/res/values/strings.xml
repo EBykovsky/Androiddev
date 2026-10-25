@@ -21,11 +21,12 @@
     <string name="keyboard_delete">Удалить последнюю цифру</string>
 
     <string name="game_home">На главную</string>
-    <string name="game_win_title">Победа!</string>
-    <string name="game_win_message">Вы угадали секретный код!</string>
-    <string name="game_lose_title">Игра окончена!</string>
-    <string name="game_lose_message">Попытки закончились. Секретный код: %1$s</string>
-    <string name="game_retry">Играть снова</string>
+    <string name="game_win_title">Ты выиграл!</string>
+    <string name="game_lose_title">Ты проиграл :(</string>
+    <string name="game_win_code">Код: %1$s</string>
+    <string name="game_win_attempts">Попыток: %1$d</string>
+    <string name="game_lose_code">Код был: %1$s</string>
+    <string name="game_retry">Еще раз</string>
 
     <string name="rules_title">ПРАВИЛА:</string>
     <string name="rules_intro">Компьютер загадывает код из неповторяющихся цифр.</string>

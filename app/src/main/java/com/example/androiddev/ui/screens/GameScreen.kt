@@ -18,9 +18,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,6 +41,7 @@ import com.example.androiddev.domain.GameSession
 import com.example.androiddev.domain.GameStatus
 import com.example.androiddev.ui.components.GameBoard
 import com.example.androiddev.ui.components.GameKeyboard
+import com.example.androiddev.ui.components.GameResultDialog
 
 @Composable
 fun GameScreen(
@@ -155,50 +154,17 @@ fun GameScreen(
     }
 
     if (session.status != GameStatus.IN_PROGRESS) {
+        GameResultDialog(
+            status = session.status,
+            secretCode = session.secretCode,
+            attemptsCount = session.attempts.size,
 
-        val isWin = session.status == GameStatus.WON
-
-        AlertDialog(
-            onDismissRequest = {},
-
-            title = {
-                Text(
-                    text = stringResource(
-                        if (isWin) R.string.game_win_title
-                        else R.string.game_lose_title
-                    )
-                )
+            onRetry = {
+                session = GameSession.start(difficulty)
+                currentGuess = emptyList()
             },
 
-            text = {
-                Text(
-                    text = if (isWin) {
-                        stringResource(R.string.game_win_message)
-                    } else {
-                        stringResource(
-                            R.string.game_lose_message,
-                            session.secretCode.joinToString("")
-                        )
-                    }
-                )
-            },
-
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        session = GameSession.start(difficulty)
-                        currentGuess = emptyList()
-                    }
-                ) {
-                    Text(stringResource(R.string.game_retry))
-                }
-            },
-
-            dismissButton = {
-                TextButton(onClick = onHomeClick) {
-                    Text(stringResource(R.string.game_home))
-                }
-            }
+            onHome = onHomeClick
         )
     }
 }
