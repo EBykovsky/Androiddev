@@ -22,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +41,60 @@ import com.example.androiddev.domain.GameStatus
 import com.example.androiddev.ui.components.GameBoard
 import com.example.androiddev.ui.components.GameKeyboard
 import com.example.androiddev.ui.components.GameResultDialog
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
+
+
+private fun gameSessionSaver(
+    difficulty: GameDifficulty
+): Saver<GameSession, String> {
+
+    return Saver(
+        save = { session ->
+
+            val savedCodes = listOf(
+                session.secretCode.joinToString("")
+            ) + session.attempts.map { attempt ->
+                attempt.guess.joinToString("")
+            }
+
+            savedCodes.joinToString("|")
+        },
+
+        restore = { saved ->
+
+            val savedCodes = saved.split("|")
+
+            val secretCode = savedCodes.first().map {
+                it.digitToInt()
+            }
+
+            val initialSession = GameSession(
+                difficulty = difficulty,
+                secretCode = secretCode
+            )
+
+            savedCodes.drop(1).fold(initialSession) { session, code ->
+
+                val guess = code.map {
+                    it.digitToInt()
+                }
+
+                session.submitGuess(guess)
+            }
+        }
+    )
+}
+
+private val currentGuessSaver = Saver<List<Int>, String>(
+    save = { guess ->
+        guess.joinToString("")
+    },
+
+    restore = { saved ->
+        saved.map { it.digitToInt() }
+    }
+)
 
 @Composable
 fun GameScreen(
@@ -49,11 +102,17 @@ fun GameScreen(
     onHomeClick: () -> Unit,
     onInfoClick: () -> Unit
 ) {
-    var session by remember(difficulty) {
+    var session by rememberSaveable(
+        difficulty,
+        stateSaver = gameSessionSaver(difficulty)
+    ) {
         mutableStateOf(GameSession.start(difficulty))
     }
 
-    var currentGuess by remember(difficulty) {
+    var currentGuess by rememberSaveable(
+        difficulty,
+        stateSaver = currentGuessSaver
+    ) {
         mutableStateOf(emptyList<Int>())
     }
 
