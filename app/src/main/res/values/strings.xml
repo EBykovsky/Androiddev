@@ -1,3 +1,45 @@
 <resources>
-    <string name="app_name">Android Dev</string>
+    <string name="app_name">Быки и коровы</string>
+    <string name="menu_start">Начать игру</string>
+    <string name="menu_rules">Правила</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="feature_not_ready">Экран появится на следующем этапе</string>
+
+    <string name="difficulty_title">Выберите\nсложность:</string>
+    <string name="difficulty_normal">Нормально</string>
+    <string name="difficulty_hard">Сложно</string>
+    <string name="difficulty_normal_message">Выбран обычный уровень: 4 цифры, 5 попыток</string>
+    <string name="difficulty_hard_message">Выбран сложный уровень: 6 цифр, 8 попыток</string>
+
+    <string name="game_title">Быки и коровы</string>
+    <string name="game_parameters">Цифр: %1$d. Попыток: %2$d</string>
+    <string name="game_back">Назад</string>
+
+    <string name="game_guess_title">Угадай код</string>
+
+    <string name="keyboard_submit">Ввести</string>
+    <string name="keyboard_delete">Удалить последнюю цифру</string>
+
+    <string name="game_home">На главную</string>
+    <string name="game_win_title">Ты выиграл!</string>
+    <string name="game_lose_title">Ты проиграл :(</string>
+    <string name="game_win_code">Код: %1$s</string>
+    <string name="game_win_attempts">Попыток: %1$d</string>
+    <string name="game_lose_code">Код был: %1$s</string>
+    <string name="game_retry">Еще раз</string>
+
+    <string name="rules_title">ПРАВИЛА:</string>
+    <string name="rules_intro">Компьютер загадывает код из неповторяющихся цифр.</string>
+    <string name="rules_input">Введи число и нажми «Ввести»:</string>
+    <string name="rules_bull">Зелёная цифра — бык: цифра и позиция угаданы.</string>
+    <string name="rules_cow">Жёлтая цифра — корова: цифра угадана, но стоит на другой позиции.</string>
+    <string name="rules_goal">Угадайте код за ограниченное число попыток.</string>
+    <string name="rules_close">Понятно!</string>
+
+    <string name="settings_title">НАСТРОЙКИ:</string>
+    <string name="settings_language">Язык:</string>
+    <string name="settings_russian">Русский</string>
+    <string name="settings_english">Английский</string>
+    <string name="settings_save">Сохранить</string>
+
 </resources>
