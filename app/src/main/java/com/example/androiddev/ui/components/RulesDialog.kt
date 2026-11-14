@@ -9,15 +9,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.androiddev.R
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import com.example.androiddev.ui.theme.FarmBrown
+import com.example.androiddev.ui.theme.FarmBullGreen
+import com.example.androiddev.ui.theme.FarmCowYellow
+import com.example.androiddev.ui.theme.GameFontFamily
+import androidx.compose.foundation.border
 
 @Composable
 fun RulesDialog(
@@ -35,10 +42,6 @@ fun RulesDialog(
             frameHeight = 585f
         ) { scale ->
 
-            val fontFamily = FontFamily(
-                Font(R.font.rubik_one_regular)
-            )
-
             Column(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
@@ -50,8 +53,8 @@ fun RulesDialog(
             ) {
                 Text(
                     text = stringResource(R.string.rules_title),
-                    color = Color(0xFF66563D),
-                    fontFamily = fontFamily,
+                    color = FarmBrown,
+                    fontFamily = GameFontFamily,
                     fontSize = (17f * scale).sp
                 )
 
@@ -63,18 +66,50 @@ fun RulesDialog(
                     stringResource(R.string.rules_goal)
                 )
 
-                rules.forEach { rule ->
-                    Text(
-                        text = rule,
-                        color = Color(0xFF66563D),
-                        fontFamily = fontFamily,
-                        fontSize = (14f * scale).sp,
-                        lineHeight = (18f * scale).sp
-                    )
+                rules.forEachIndexed { index, rule ->
+
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(
+                            (6f * scale).dp
+                        ),
+                        verticalAlignment = Alignment.Top
+                    ) {
+
+                        if (index == 2 || index == 3) {
+
+                            val markerColor = if (index == 2) {
+                                FarmBullGreen
+                            } else {
+                                FarmCowYellow
+                            }
+
+                            Box(
+                                modifier = Modifier
+                                    .size((14f * scale).dp)
+                                    .background(
+                                        color = markerColor,
+                                        shape = RoundedCornerShape((4f * scale).dp)
+                                    )
+                                    .border(
+                                        width = (1.5f * scale).dp,
+                                        color = FarmBrown,
+                                        shape = RoundedCornerShape((4f * scale).dp)
+                                    )
+                            )
+                        }
+
+                        Text(
+                            text = rule,
+                            color = FarmBrown,
+                            fontFamily = GameFontFamily,
+                            fontSize = (14f * scale).sp,
+                            lineHeight = (18f * scale).sp
+                        )
+                    }
                 }
             }
 
-            androidx.compose.foundation.layout.Box(
+            Box(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .offset(y = (650f * scale).dp)
