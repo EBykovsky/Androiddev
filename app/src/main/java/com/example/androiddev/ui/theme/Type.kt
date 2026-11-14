@@ -5,30 +5,47 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.Font
+import com.example.androiddev.R
 
-// Set of Material typography styles to start with
+val GameFontFamily = FontFamily(
+    Font(R.font.rubik_one_regular)
+)
+
 val Typography = Typography(
+    titleLarge = TextStyle(
+        fontFamily = GameFontFamily,
+        fontSize = 28.sp,
+        lineHeight = 34.sp,
+        color = FarmBrownDark
+    ),
+
+    titleMedium = TextStyle(
+        fontFamily = GameFontFamily,
+        fontSize = 20.sp,
+        lineHeight = 26.sp,
+        color = FarmBrownDark
+    ),
+
+    labelLarge = TextStyle(
+        fontFamily = GameFontFamily,
+        fontSize = 16.sp,
+        lineHeight = 22.sp
+    ),
+
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
+        color = FarmBrownDark
+    ),
+
+    bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        color = FarmBrownDark
     )
-    */
 )

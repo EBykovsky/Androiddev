@@ -16,24 +16,33 @@ import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.androiddev.R
-
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.draw.scale
+import com.example.androiddev.ui.theme.FarmBrown
+import com.example.androiddev.ui.theme.FarmBrownDark
+import com.example.androiddev.ui.theme.GameFontFamily
+import androidx.compose.runtime.remember
 @Composable
 fun GameMenuButton(
     text: String,
     scale: Float,
     onClick: () -> Unit
 ) {
-    val buttonColor = Color(0xFF66563D)
-    val outlineColor = Color(0xFF3D301E)
+    val interactionSource = remember {
+        MutableInteractionSource()
+    }
 
-    val fontFamily = FontFamily(
-        Font(R.font.rubik_one_regular)
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val buttonScale by animateFloatAsState(
+        targetValue = if (isPressed) 0.96f else 1f,
+        label = "gameMenuButtonScale"
     )
 
     val outlineWidth = with(LocalDensity.current) {
@@ -46,15 +55,25 @@ fun GameMenuButton(
                 width = (276f * scale).dp,
                 height = (63f * scale).dp
             )
-            .clip(RoundedCornerShape((10f * scale).dp))
-            .background(buttonColor)
-            .clickable(onClick = onClick),
+            .scale(buttonScale)
+            .clip(
+                RoundedCornerShape((10f * scale).dp)
+            )
+            .background(
+                if (isPressed) FarmBrownDark else FarmBrown
+            )
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = onClick
+            ),
         contentAlignment = Alignment.Center
     ) {
+
         Text(
             text = text,
-            color = outlineColor,
-            fontFamily = fontFamily,
+            color = FarmBrownDark,
+            fontFamily = GameFontFamily,
             fontSize = (36f * scale).sp,
             textAlign = TextAlign.Center,
             maxLines = 1,
@@ -70,7 +89,7 @@ fun GameMenuButton(
         Text(
             text = text,
             color = Color.White,
-            fontFamily = fontFamily,
+            fontFamily = GameFontFamily,
             fontSize = (36f * scale).sp,
             textAlign = TextAlign.Center,
             maxLines = 1,
