@@ -155,7 +155,7 @@ fun GameScreen(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 GameHeaderButton(
-                    text = "i",
+                    text = "ⓘ",
                     onClick = onInfoClick
                 )
             }
@@ -251,8 +251,8 @@ private fun GameHeaderButton(
         Text(
             text = text,
             color = Color.White,
-            fontFamily = fontFamily,
-            fontSize = 13.sp
+            fontFamily = if (text == "ⓘ") FontFamily.Default else fontFamily,
+            fontSize = if (text == "ⓘ") 18.sp else 13.sp
         )
     }
 }

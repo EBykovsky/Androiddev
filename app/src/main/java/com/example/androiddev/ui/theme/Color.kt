@@ -2,10 +2,17 @@ package com.example.androiddev.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val FarmBrown = Color(0xFF66563D)
+val FarmBrownDark = Color(0xFF3D301E)
+val FarmCream = Color(0xFFF9EFBE)
+val FarmCreamLight = Color(0xFFFFFAE4)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val FarmBullGreen = Color(0xFFA4F5BA)
+val FarmCowYellow = Color(0xFFFFEA83)
+
+val FarmCellDisabled = Color(0xFFE5E5E5)
+
+val FarmBorder = Color(0xFFCDBB9E)
+val FarmBullBorder = Color(0xFF7CCD92)
+val FarmCowBorder = Color(0xFFE1CC65)
+val FarmDisabledBorder = Color(0xFFAFAFAF)

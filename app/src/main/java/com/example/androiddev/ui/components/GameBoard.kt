@@ -24,8 +24,6 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,10 +31,23 @@ import com.example.androiddev.R
 import com.example.androiddev.domain.DigitResult
 import com.example.androiddev.domain.GameDifficulty
 import com.example.androiddev.domain.GuessResult
+import com.example.androiddev.ui.theme.FarmBrown
+import com.example.androiddev.ui.theme.FarmBrownDark
+import com.example.androiddev.ui.theme.FarmCream
+import com.example.androiddev.ui.theme.FarmCreamLight
+import com.example.androiddev.ui.theme.FarmBullGreen
+import com.example.androiddev.ui.theme.FarmCowYellow
+import com.example.androiddev.ui.theme.FarmCellDisabled
+import com.example.androiddev.ui.theme.FarmBorder
+import com.example.androiddev.ui.theme.FarmBullBorder
+import com.example.androiddev.ui.theme.FarmCowBorder
+import com.example.androiddev.ui.theme.FarmDisabledBorder
+import com.example.androiddev.ui.theme.GameFontFamily
 
 private enum class CellAppearance {
     DISABLED,
     NORMAL,
+    ACTIVE,
     BULL,
     COW
 }
@@ -48,10 +59,6 @@ fun GameBoard(
     currentGuess: List<Int>,
     modifier: Modifier = Modifier
 ) {
-    val fontFamily = FontFamily(
-        Font(R.font.rubik_one_regular)
-    )
-
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -67,13 +74,13 @@ fun GameBoard(
                         topEnd = 10.dp
                     )
                 )
-                .background(Color(0xFF66563D)),
+                .background(FarmBrown),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = stringResource(R.string.game_guess_title),
                 color = Color.White,
-                fontFamily = fontFamily,
+                fontFamily = GameFontFamily,
                 fontSize = 23.sp,
                 textAlign = TextAlign.Center
             )
@@ -85,11 +92,11 @@ fun GameBoard(
                 .fillMaxWidth()
                 .border(
                     width = 5.dp,
-                    color = Color(0xFF66563D),
+                    color = FarmBrown,
                     shape = RoundedCornerShape(25.dp)
                 )
                 .clip(RoundedCornerShape(25.dp))
-                .background(Color(0xFFF9EFBE))
+                .background(FarmCream)
                 .padding(9.dp)
         ) {
 
@@ -137,7 +144,7 @@ fun GameBoard(
                                 }
 
                                 rowIndex == attempts.size ->
-                                    CellAppearance.NORMAL
+                                    CellAppearance.ACTIVE
 
                                 else ->
                                     CellAppearance.DISABLED
@@ -173,17 +180,28 @@ private fun GameCell(
     modifier: Modifier = Modifier
 ) {
     val backgroundColor = when (appearance) {
-        CellAppearance.DISABLED -> Color(0xFFE5E5E5)
-        CellAppearance.NORMAL -> Color(0xFFFFFAE4)
-        CellAppearance.BULL -> Color(0xFFA4F5BA)
-        CellAppearance.COW -> Color(0xFFFFEA83)
+        CellAppearance.DISABLED -> FarmCellDisabled
+        CellAppearance.NORMAL -> FarmCreamLight
+        CellAppearance.ACTIVE -> FarmCreamLight
+        CellAppearance.BULL -> FarmBullGreen
+        CellAppearance.COW -> FarmCowYellow
     }
 
     val borderColor = when (appearance) {
-        CellAppearance.DISABLED -> Color(0xFFAFAFAF)
-        CellAppearance.NORMAL -> Color(0xFFCDBB9E)
-        CellAppearance.BULL -> Color(0xFF7CCD92)
-        CellAppearance.COW -> Color(0xFFE1CC65)
+        CellAppearance.DISABLED -> FarmDisabledBorder
+        CellAppearance.NORMAL -> FarmBorder
+
+        CellAppearance.ACTIVE ->
+            if (showCursor) FarmBrownDark else FarmBrown
+
+        CellAppearance.BULL -> FarmBullBorder
+        CellAppearance.COW -> FarmCowBorder
+    }
+
+    val borderWidth = when {
+        showCursor -> 3.dp
+        appearance == CellAppearance.ACTIVE -> 2.dp
+        else -> 1.dp
     }
 
     val text = when {
@@ -191,10 +209,6 @@ private fun GameCell(
         showCursor -> "−"
         else -> ""
     }
-
-    val fontFamily = FontFamily(
-        Font(R.font.rubik_one_regular)
-    )
 
     val fontSize = if (isHard) 26.sp else 40.sp
     val cornerRadius = if (isHard) 13.dp else 10.dp
@@ -208,17 +222,17 @@ private fun GameCell(
             .clip(RoundedCornerShape(cornerRadius))
             .background(backgroundColor)
             .border(
-                1.dp,
-                borderColor,
-                RoundedCornerShape(cornerRadius)
+                width = borderWidth,
+                color = borderColor,
+                shape = RoundedCornerShape(cornerRadius)
             ),
         contentAlignment = Alignment.Center
     ) {
 
         Text(
             text = text,
-            color = Color(0xFF433722),
-            fontFamily = fontFamily,
+            color = FarmBrownDark,
+            fontFamily = GameFontFamily,
             fontSize = fontSize,
             maxLines = 1,
             style = TextStyle(
@@ -232,7 +246,7 @@ private fun GameCell(
         Text(
             text = text,
             color = Color.White,
-            fontFamily = fontFamily,
+            fontFamily = GameFontFamily,
             fontSize = fontSize,
             maxLines = 1
         )

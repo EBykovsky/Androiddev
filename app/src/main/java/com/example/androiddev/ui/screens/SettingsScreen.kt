@@ -38,7 +38,7 @@ fun SettingsScreen(
     GameMenuLayout(
         modifier = modifier,
         showBackground = false,
-        frameHeight = 410f,
+        frameHeight = 450f,
         artworkOffsetY = 0f
     ) { scale ->
 
@@ -97,7 +97,7 @@ fun SettingsScreen(
         Box(
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .offset(y = (480f * scale).dp)
+                .offset(y = (515f * scale).dp)
         ) {
             GameMenuButton(
                 text = stringResource(R.string.settings_save),
