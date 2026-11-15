@@ -83,6 +83,7 @@ fun GameResultDialog(
                     color = Color(0xFF66563D),
                     fontFamily = fontFamily,
                     fontSize = (32f * scale).sp,
+                    lineHeight = (42f * scale).sp,
                     textAlign = TextAlign.Center
                 )
 
